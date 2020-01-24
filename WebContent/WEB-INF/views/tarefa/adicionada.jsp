@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 </head>
 <body>
-	Nova tarefa adicionada com sucesso!
+	Nova tarefa adicionada com sucesso!<br/>
+	<a href="listaTarefas">Lista de tarefas</a>
 </body>
 </html>
