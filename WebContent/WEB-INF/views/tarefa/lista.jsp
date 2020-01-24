@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <script type="text/javascript" src="resources/js/jquery.js"></script>
+	<link type="text/css" href="resources/css/tarefas.css" rel="stylesheet"/>
 </head>
 <body>
 	<script>
@@ -24,16 +25,21 @@
 		<tr>
 			<th>Id</th>
 			<th>Descrição</th>
-			<th>Finalizado</th>
+			<th>Estado</th>
 			<th>Data Finalização</th>
+			<th>Finalizar?</th>
+			<th>Editar?</th>
 		</tr>
 		<c:forEach items="${tarefas}" var="tarefa">
 			<tr>
 				<td>${ tarefa.id }</td>
 				<td>${ tarefa.descricao }</td>
-				<c:if test="${ tarefa.finalizado eq false }">
+				<c:if test="${ not tarefa.finalizado }">
 					<td id="tarefa_${ tarefa.id }"><a href="#"
 						onClick="finalizaAgora(${ tarefa.id })"> Finaliza agora! </a></td>
+				</c:if>
+				<c:if test="${ tarefa.finalizado }">
+					<td>Finalizado!</td>
 				</c:if>
 
 				<td><fmt:formatDate value="${ tarefa.dataFinalizacao.time }"

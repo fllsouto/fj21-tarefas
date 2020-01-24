@@ -3,9 +3,10 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-</head>
+	<head>
+		<meta charset="UTF-8">
+		<link type="text/css" href="resources/css/tarefas.css" rel="stylesheet"/>
+	</head>
 <body>
 	<h3>Adicionar tarefas</h3>
 	<form:errors path="tarefa.descricao" />
