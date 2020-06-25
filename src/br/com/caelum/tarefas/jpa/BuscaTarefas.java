@@ -1,30 +1,30 @@
 package br.com.caelum.tarefas.jpa;
 
-import java.util.Calendar;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 import br.com.caelum.tarefas.modelo.Tarefa;
 
-public class AdicionaTarefa {
+public class BuscaTarefas {
 
 	public static void main(String[] args) {
-
-		Tarefa tarefa = new Tarefa();
-		tarefa.setDescricao("Estudar JPA e Hibernate");
-		tarefa.setFinalizado(true);
-		tarefa.setDataFinalizacao(Calendar.getInstance());
 
 		EntityManagerFactory factory = Persistence.createEntityManagerFactory("tarefas");
 		EntityManager manager = factory.createEntityManager();
 
-		manager.getTransaction().begin();
-		manager.persist(tarefa);
-		manager.getTransaction().commit();
+		// cuidado, use o import javax.persistence.Query
+		Query query = manager.createQuery("select t from Tarefa as t " + "where t.finalizado = :paramFinalizado");
+		query.setParameter("paramFinalizado", true);
 
-		System.out.println("ID da tarefa: " + tarefa.getId());
+		List<Tarefa> lista = query.getResultList();
+
+		for (Tarefa t : lista) {
+			System.out.println(t.getDescricao());
+		}
 
 		manager.close();
 	}
