@@ -3,25 +3,25 @@ package br.com.caelum.tarefas.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import br.com.caelum.tarefas.dao.JdbcTarefaDao;
+import br.com.caelum.tarefas.dao.TarefaDao;
 import br.com.caelum.tarefas.modelo.Tarefa;
 
 @Controller
+@Transactional
 public class TarefasController {
 	
-	private JdbcTarefaDao dao;
-	
 	@Autowired
-	public TarefasController(JdbcTarefaDao dao) {
-		this.dao = dao;
-	}
-
+	@Qualifier("jpaTarefaDao")
+	private TarefaDao dao;
+	
 	@RequestMapping("novaTarefa")
 	public String form() {
 		return "tarefa/formulario";

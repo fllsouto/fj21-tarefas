@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import br.com.caelum.tarefas.modelo.Usuario;
 
 @Repository
-public class JdbcUsuarioDao {
+public class JdbcUsuarioDao implements UsuarioDao {
 	private Connection connection;
 
 	@Autowired
